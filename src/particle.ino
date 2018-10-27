@@ -31,16 +31,13 @@ int led1 = D0; // Instead of writing D0 over and over again, we'll write led1
 int led2 = D7; // Instead of writing D7 over and over again, we'll write led2
 // This one is the little blue LED on your board. On the Photon it is next to D7, and on the Core it is next to the USB jack.
 
-// Having declared these variables, let's move on to the setup function.
-// The setup function is a standard part of any microcontroller program.
-// It runs only once when the device boots up or is reset.
+char *message = "text message 1";
 
 void setup() {
 
-  // We are going to tell our device that D0 and D7 (which we named led1 and led2 respectively) are going to be output
-  // (That means that we will be sending voltage to them, rather than monitoring voltage that comes from them)
+  Particle.variable("mess1", message);
 
-  // It's important you do this here, inside the setup() function rather than outside it or in the loop function.
+  Particle.function("function1", functionOne);
 
   pinMode(led1, OUTPUT);
   pinMode(led2, OUTPUT);
@@ -69,3 +66,11 @@ void loop() {
   // And repeat!
 }
 
+int functionOne(String command)
+{
+  if(command == "yes")
+  {
+    return 1;
+  }
+  else return -1;
+}
