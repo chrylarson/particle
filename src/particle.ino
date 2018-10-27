@@ -70,7 +70,12 @@ int functionOne(String command)
 {
   if(command == "yes")
   {
+    Particle.variable("mess1", "Yes!");
     return 1;
   }
-  else return -1;
+  else 
+  {
+    Particle.variable("mess1", "No.");
+    return -1;
+  }
 }
